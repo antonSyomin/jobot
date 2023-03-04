@@ -1,4 +1,3 @@
-tg_token = "6071773262:AAGYs4pdSIta5bw4YzXeyuWKYLOOTvavHAg"
 languages = [
     "python", "java", "c#", "с#", "с++", "c++", "go", "php", "javascript", "django", "html", "css",
     "sql", "kotlin", "scala", "haskell", "swift", "1c", "1с", "frontend", "фронтенд", "бэкенд", "qa"
