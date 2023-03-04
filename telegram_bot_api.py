@@ -1,7 +1,6 @@
 import sqlite3
 import db
-import telebot
-from telebot import types
+import telebot  # type: ignore
 import bot_states
 import re
 import config
@@ -164,12 +163,12 @@ def internships(command):
         num_of_internships = hh_api.get_num_of_internships()
         categories = hh_api.get_list_of_intern_categories()
         answer = "Jobot нашёл {} вакансий без опыта работы. Выберите категорию".format(num_of_internships)
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
         for category_name, data in categories.items():
             if data["counter"] > 0:
-                btn = types.KeyboardButton("{} ({})".format(category_name, data["counter"]))
+                btn = telebot.types.KeyboardButton("{} ({})".format(category_name, data["counter"]))
                 markup.add(btn)
-        markup.add(types.KeyboardButton("Назад"))
+        markup.add(telebot.types.KeyboardButton("Назад"))
         bot.send_message(command.chat.id, answer, reply_markup=markup)
         botFSM.set_state(command.text)
         db_connection.log_request(command.text)
@@ -287,7 +286,8 @@ def any_other_text(message):
         hello_world(message)
     else:
         bot.send_message(message.chat.id,
-                         "Чтобы узнать команды чат-бота, введите /help")
+                         "Jobot не знает такой команды. "
+                         "Чтобы посмотреть список доступных команд, введите /help")
 
 
 db_connection = db.DB()
